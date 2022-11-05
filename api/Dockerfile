@@ -1,16 +1,27 @@
-FROM  python:3
+# pull the official base image
+FROM python:3.8.3-alpine
 
-ENV PYTHONUNBUFFERED=1
+# setup environment variable  
+ENV DockerHOME=/home/app/webapp
 
-WORKDIR /api
+# set work directory  
+RUN mkdir -p $DockerHOME
 
-COPY requirements.txt requirements.txt
+# where your code lives  
+WORKDIR $DockerHOME
 
-# RUN pip3 install -r requirements.txt
-RUN pip install django django-cors-headers
+# set environment variables  
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-COPY . .
+# install dependencies  
+RUN pip install --upgrade pip
 
+# copy whole project to your docker home directory. 
+COPY . $DockerHOME
+# run this command to install all dependencies          
+RUN pip install -r requirements.txt
+# port where the Django app runs  
 EXPOSE 8000
-
-CMD [ "python3", "manage.py", "runserver"]
+# start server  
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
