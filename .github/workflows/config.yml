@@ -29,8 +29,6 @@ jobs:
         python -m pip install --upgrade pip
         pip freeze > requirements.txt
         pip install -r requirements.txt
-        npm install -g npm@latest
-        npm cache clean --force
-        npm rm -rf node_modules && rm package-lock.json
-        npm install
+        npm ci
+        npm test
         npm start
