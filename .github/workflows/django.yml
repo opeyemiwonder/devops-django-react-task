@@ -13,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.8]
+        python-version: [3.8.3]
 
     steps:
     - uses: actions/checkout@v3
@@ -29,4 +29,3 @@ jobs:
     - name: Run Tests
       run: |
         python3 manage.py runserver
-        
