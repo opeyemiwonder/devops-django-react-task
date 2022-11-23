@@ -24,17 +24,17 @@ jobs:
       - name: install python packages
         run: pip install -r requirements.txt
      
-#   build:
-#     needs: run-tests
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: deploy to server
-#       uses: appleboy/ssh-action@master
-#       with:
-#         host: ${{ secrets.HOST }}
-#         username: ${{ secrets.USERNAME }}
-#         key: ${{ secrets.KEY }}
-#         port: ${{ secrets.PORT }}
-#         script: | 
-#           cd animatedtalkingheads.web
-#           ./deploy.sh
+  build:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: deploy to server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: | 
+          cd devops-django-react-task
+          ./deploy.sh
