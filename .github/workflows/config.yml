@@ -15,8 +15,8 @@ jobs:
           python-version: '3.8'
       - name: install packages
         run: yarn install
-      - name: build application
-        run: yarn start
+      # - name: build application
+        #run: yarn build
       - name: install python packages
         run: python -m pip install --upgrade pip
       - name: install python packages 
